@@ -21,7 +21,7 @@ csv.each do |row|
   t = Badge.new
   t.product = row['Product']
   t.sku = row['SKU']
-  t.price = row['Price']
+  t.price = row['Price'].to_d
   t.size = row['Available'].gsub(/\:|\d/, '')
   t.quantity = row['Available'].gsub(/\:|\D/, '')
   t.year = row['Year']
