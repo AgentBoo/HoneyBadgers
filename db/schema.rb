@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171003141755) do
+ActiveRecord::Schema.define(version: 20171005005626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20171003141755) do
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
     t.boolean "available", default: true
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.string "image_id"
   end
 
   create_table "cart_items", force: :cascade do |t|
@@ -58,6 +63,12 @@ ActiveRecord::Schema.define(version: 20171003141755) do
     t.index ["order_id"], name: "index_contact_infos_on_order_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "order_statuses", force: :cascade do |t|
     t.string "phase"
     t.datetime "created_at", null: false
@@ -73,11 +84,21 @@ ActiveRecord::Schema.define(version: 20171003141755) do
     t.bigint "order_status_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
+  end
+
+  create_table "permanent_customers", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "cart_items", "badges"
   add_foreign_key "cart_items", "orders"
   add_foreign_key "contact_infos", "orders"
+  add_foreign_key "orders", "customers"
   add_foreign_key "orders", "order_statuses"
 end

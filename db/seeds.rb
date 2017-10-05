@@ -16,8 +16,8 @@ csv.each do |row|
 #    puts @available = @badge['Available'].split(/\:|\D/)
 
 
-    
-    
+
+
   t = Badge.new
   t.product = row['Product']
   t.sku = row['SKU']
@@ -27,10 +27,11 @@ csv.each do |row|
   t.year = row['Year']
   t.description = row['Description']
   t.category = row['Category']
+  t.image = File.open(Rails.root.join("lib/seeds","#{row['SKU']}.png"), "rb")
   t.save
-  
-#    
+
+#
 #  badge = { 1 => { featured: "true"}, 2 => {featured: "true"}}
 #  Badge.update(badge.keys, badge.values)
-    
+
 end
