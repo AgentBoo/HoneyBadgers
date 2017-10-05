@@ -8,4 +8,6 @@ class BadgesController < ApplicationController
     @badges = Badge.all
     render json: @badges
   end
+
+
 end
