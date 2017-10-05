@@ -1,1 +1,1 @@
-Refile.backends['store'] = Refile::Backend::FileSystem.new('/lib/seeds')
+Refile.backends['store'] = Refile::Backend::FileSystem.new('/etc/projectname-uploads/')
