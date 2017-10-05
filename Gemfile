@@ -47,3 +47,5 @@ gem 'refile-mini_magick', github: 'refile/refile-mini_magick'
 gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 
 gem 'active_model_serializers', '~> 0.10.0'
+
+gem 'refile-s3'
