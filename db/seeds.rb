@@ -12,10 +12,6 @@ csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 
 csv.each do |row|
         @badge = row.to_hash
-#   puts @available = @badge['Available'].gsub(/\:|\d/,'')
-#    puts @available = @badge['Available'].split(/\:|\D/)
-
-
 
 
   t = Badge.new
@@ -30,8 +26,13 @@ csv.each do |row|
   t.image = File.open(Rails.root.join("lib/seeds","#{row['SKU'].downcase}.png"), "rb")
   t.save
 
-#
-#  badge = { 1 => { featured: "true"}, 2 => {featured: "true"}}
-#  Badge.update(badge.keys, badge.values)
-
 end
+
+  badge = { 1 => { featured: "true"}, 2 => {featured: "true"}, 3 => {featured: "true"}}
+  Badge.update(badge.keys, badge.values)
+
+  OrderStatus.create(phase: "In progress")
+  OrderStatus.create(phase: "Completed")
+  OrderStatus.create(phase: "Cancelled")
+  OrderStatus.create(phase: "Shipped")
+  OrderStatus.create(phase: "Delivered")

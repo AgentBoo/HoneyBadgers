@@ -1,5 +1,5 @@
 class BadgeSerializer < ActiveModel::Serializer
-  attributes :id, :product, :price, :size, :year, :description, :category, :available, :image_path
+  attributes :id, :product, :price, :size, :year, :description, :category, :featured, :available, :image_path
 
   def image
     Refile.attachment_url(object, :image, :fill, 800, 800, format: "png")
