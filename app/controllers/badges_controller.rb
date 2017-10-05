@@ -1,6 +1,6 @@
 class BadgesController < ApplicationController
   def index
-    @badges = Badge.find_by(featured: true).order(:id)
+    @badges = Badge.where(featured: true)
     render json: @badges
   end
 
