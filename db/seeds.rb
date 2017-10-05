@@ -27,7 +27,7 @@ csv.each do |row|
   t.year = row['Year']
   t.description = row['Description']
   t.category = row['Category']
-  t.image = File.open(Rails.root.join("app/lib/seeds","#{row['SKU']}.png"), "rb")
+  t.image = File.open(File.join("lib/seeds","#{row['SKU']}.png"), "rb")
   t.save
 
 #
