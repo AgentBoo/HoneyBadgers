@@ -29,5 +29,8 @@ module Honeybadger
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Application must have sql as schema format to properly dump OID type.
+    config.active_record.schema_format = :sql
   end
 end
