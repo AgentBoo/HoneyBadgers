@@ -28,7 +28,7 @@ csv.each do |row|
 
 end
 
-  badge = { 1 => { featured: "true"}, 2 => {featured: "true"}, 3 => {featured: "true"}}
+  badge = { 1 => { featured: "true"}, 12 => {featured: "true"}, 23 => {featured: "true"}}
   Badge.update(badge.keys, badge.values)
 
   OrderStatus.create(phase: "In progress")

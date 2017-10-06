@@ -57,10 +57,6 @@ CREATE TABLE badges (
     updated_at timestamp without time zone NOT NULL,
     featured boolean DEFAULT false,
     available boolean DEFAULT true,
-    image_file_name character varying,
-    image_content_type character varying,
-    image_file_size integer,
-    image_updated_at timestamp without time zone,
     image_id character varying
 );
 
@@ -165,7 +161,6 @@ ALTER SEQUENCE contact_infos_id_seq OWNED BY contact_infos.id;
 
 CREATE TABLE customers (
     id bigint NOT NULL,
-    email character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -259,38 +254,6 @@ ALTER SEQUENCE orders_id_seq OWNED BY orders.id;
 
 
 --
--- Name: permanent_customers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE permanent_customers (
-    id bigint NOT NULL,
-    email character varying,
-    password_digest character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: permanent_customers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE permanent_customers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: permanent_customers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE permanent_customers_id_seq OWNED BY permanent_customers.id;
-
-
---
 -- Name: refile_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -373,13 +336,6 @@ ALTER TABLE ONLY orders ALTER COLUMN id SET DEFAULT nextval('orders_id_seq'::reg
 
 
 --
--- Name: permanent_customers id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY permanent_customers ALTER COLUMN id SET DEFAULT nextval('permanent_customers_id_seq'::regclass);
-
-
---
 -- Name: refile_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -440,14 +396,6 @@ ALTER TABLE ONLY order_statuses
 
 ALTER TABLE ONLY orders
     ADD CONSTRAINT orders_pkey PRIMARY KEY (id);
-
-
---
--- Name: permanent_customers permanent_customers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY permanent_customers
-    ADD CONSTRAINT permanent_customers_pkey PRIMARY KEY (id);
 
 
 --
@@ -569,11 +517,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171003141746'),
 ('20171003141754'),
 ('20171003141755'),
-('20171004091733'),
-('20171004091838'),
-('20171004091922'),
-('20171004173703'),
 ('20171005005626'),
-('20171005090736');
+('20171005090736'),
+('20171006112129'),
+('20171006115959');
 
 

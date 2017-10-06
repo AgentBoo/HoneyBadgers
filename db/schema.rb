@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005005626) do
+ActiveRecord::Schema.define(version: 20171006105727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,6 @@ ActiveRecord::Schema.define(version: 20171005005626) do
     t.datetime "updated_at", null: false
     t.boolean "featured", default: false
     t.boolean "available", default: true
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
-    t.datetime "image_updated_at"
     t.string "image_id"
   end
 
@@ -94,6 +90,14 @@ ActiveRecord::Schema.define(version: 20171005005626) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "refile_attachments", id: :serial, force: :cascade do |t|
+    t.oid "oid", null: false
+    t.string "namespace", null: false
+    t.datetime "created_at"
+    t.index ["namespace"], name: "index_refile_attachments_on_namespace"
+    t.index ["oid"], name: "index_refile_attachments_on_oid"
   end
 
   add_foreign_key "cart_items", "badges"

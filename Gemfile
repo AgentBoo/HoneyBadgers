@@ -48,4 +48,4 @@ gem 'sinatra', github: 'sinatra/sinatra', branch: 'master'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
-gem 'refile-s3'
+gem 'stripe'
