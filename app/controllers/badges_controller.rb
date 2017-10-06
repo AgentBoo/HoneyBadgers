@@ -30,7 +30,7 @@ class BadgesController < ApplicationController
           @cart_item.update(quantity: params[:quantity].to_i + @cart_item.quantity.to_i)
         end
 
-        redirect_back(fallback_location: root_path)
+        render json: { cart_item: @cart_item}
     end
 
     def update
