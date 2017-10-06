@@ -10,7 +10,10 @@ class OrdersController < ApplicationController
   # else
     @order = Order.find(params[:id])
     render :json => { :order => @order,
-                      :cart_items => @order.cart_items }
+                      :cart_items => @order.cart_items,
+                      :badge_product => @order.cart_items.first.badge.product,
+                      :badge_size => @order.cart_items.first.badge.size,
+                      :badge_description => @order.cart_items.first.badge.description }
   # end
 
 end
